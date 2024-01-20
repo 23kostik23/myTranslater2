@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <h1 style="text-align: center">Введите в поле ниже текст, который хотите перевести с elfLanguage</h1>
+        <style>
+            *{
+                margin: 2px;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: 'Montseratt', sans-serif;
+            }
+            body{
+                background-color: #c9d6ff;
+                background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                height: 100vh;
+            }
+            .container{
+                background-color: #fff;
+                border-radius: 30px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+                position: relative;
+                overflow: hidden;
+                width: 700px;
+                max-width: 100%;
+                min-height: 480px;
+
+            }
+            input{
+                background-color: #eee;
+                border: none;
+                margin: 10px 0;
+                padding: 15px 15px;
+                font-size: 20px;
+                border-radius: 100px;
+                width: 100%;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container" id="container">
+            <center>
+            <input type="text" id="textInput" name="textInput" placeholder="Text" onkeydown="handleEnter(event)">
+            <h2 id="resultOutput" style="margin-top: 100px"></h2>
+            </center>
+        </div>
+        
+        <script>
+            let userInput = '';
+            function traslate(text){
+                let angl = "qwertyuiop[]asdfghjkl;'zxcvbnm,./";
+                let rus = "йцукенгшщзхъфывапролджэячсмитьбю.";
+                text = text.toLowerCase();
+                let result = '';
+                    for(let i = 0; i < text.length; i++){
+                       if(!angl.includes(text[i])){
+                       result += text[i];
+                    }
+                  for(j = 0; j < angl.length; j++){
+                        if(text[i] == angl[j]){
+                       result += rus[j];
+                        }
+                    }    
+                }
+                return result;
+            }
+            function handleEnter(event){
+                if(event.key == "Enter"){
+                    userInput = document.getElementById("textInput").value;
+                    console.log(userInput);
+                    let result = traslate(userInput);
+                    console.log(result);
+                    let resultOutput = document.getElementById("resultOutput");
+                    resultOutput.textContent = result;
+                    resultOutput.style.display = "block";
+                }
+            }
+        </script>
+    </body>
+</html>
